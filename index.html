@@ -4,20 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Talha Asif | Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        /* --- STABLE VARIABLES --- */
+        /* --- CORE VARIABLES --- */
         :root {
-            --bg-base: #060913;
-            --card-bg: #111524;
-            --card-border: rgba(255, 255, 255, 0.08);
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --accent-blue: #00f2fe;
-            --accent-purple: #8b5cf6;
+            --bg-color: #0d1117; /* Dark GitHub-style background from your screenshot */
+            --card-bg: #161b22;
+            --text-main: #c9d1d9;
+            --text-heading: #ffffff;
+            --accent-blue: #58a6ff;
+            --border-color: #30363d;
         }
 
-        /* --- BASE RESET --- */
         * {
             margin: 0;
             padding: 0;
@@ -26,353 +24,279 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: var(--bg-base);
+            background-color: var(--bg-color);
             color: var(--text-main);
             line-height: 1.6;
             display: flex;
             justify-content: center;
             padding: 40px 20px;
-            overflow-x: hidden;
-            /* Stable ambient background */
-            background-image: 
-                radial-gradient(circle at 15% 50%, rgba(139, 92, 246, 0.15), transparent 25%),
-                radial-gradient(circle at 85% 30%, rgba(0, 242, 254, 0.15), transparent 25%);
-            background-attachment: fixed;
         }
 
-        /* --- CONTAINER & LAYOUT --- */
-        .portfolio-wrapper {
-            max-width: 900px;
+        .container {
+            max-width: 850px;
             width: 100%;
             display: flex;
             flex-direction: column;
             gap: 40px;
-            animation: slideUp 1s ease-out;
         }
 
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(30px); }
+        /* --- CSS LOAD ANIMATIONS (100% Stable) --- */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.3s; }
+        .delay-3 { animation-delay: 0.5s; }
+        .delay-4 { animation-delay: 0.7s; }
+
+        @keyframes fadeInUp {
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* --- STABLE CARD DESIGN --- */
-        .card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            transition: transform 0.3s ease, border-color 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(0, 242, 254, 0.3);
-        }
-
-        /* --- TYPOGRAPHY --- */
-        h1 {
-            font-size: 2.8rem;
-            font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 5px;
-            text-shadow: 0 0 20px rgba(0, 242, 254, 0.4);
-        }
-
-        h2.section-title {
-            font-family: 'Fira Code', monospace;
-            font-size: 1.4rem;
-            margin-bottom: 25px;
+        /* --- HEADINGS --- */
+        h2 {
+            font-size: 1.8rem;
+            color: var(--text-heading);
             display: flex;
             align-items: center;
-            gap: 12px;
-            color: var(--text-main);
-            border-bottom: 1px solid var(--card-border);
-            padding-bottom: 15px;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
         }
 
-        h2.section-title span { color: var(--accent-blue); }
-
-        .subtitle {
-            font-family: 'Fira Code', monospace;
-            color: var(--accent-blue);
-            font-size: 1.1rem;
-            margin-bottom: 15px;
-        }
-
-        /* --- HERO SECTION --- */
-        .hero-layout {
+        /* --- PROFILE SECTION --- */
+        .profile-header {
             display: flex;
             align-items: center;
-            gap: 40px;
+            gap: 30px;
+            margin-bottom: 20px;
         }
 
-        .avatar-wrapper {
+        .avatar-container {
             position: relative;
-            width: 180px;
-            height: 180px;
-            flex-shrink: 0;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            padding: 4px;
+            background: linear-gradient(45deg, var(--accent-blue), #8b5cf6);
             animation: float 4s ease-in-out infinite;
         }
 
         @keyframes float {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-8px); }
         }
 
-        .avatar-ring {
-            position: absolute;
-            top: -8px; left: -8px; right: -8px; bottom: -8px;
-            border: 2px dashed var(--accent-blue);
-            border-radius: 50%;
-            animation: spin 12s linear infinite;
-        }
-
-        @keyframes spin { 100% { transform: rotate(360deg); } }
-
-        .avatar-img {
+        .avatar {
             width: 100%;
             height: 100%;
             border-radius: 50%;
             object-fit: cover;
-            border: 4px solid var(--bg-base);
-            position: relative;
-            z-index: 2;
+            border: 4px solid var(--bg-color);
         }
 
-        .location-tag {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--card-border);
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 15px;
+        .about-text {
+            font-size: 1.05rem;
         }
 
-        /* --- ABOUT & INTERESTS --- */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1.5fr 1fr;
-            gap: 30px;
-        }
-
-        .about-text { color: var(--text-muted); }
-        .about-text strong { color: var(--text-main); font-weight: 600; }
-
-        .interest-box {
-            background: rgba(0, 0, 0, 0.2);
-            border: 1px solid var(--card-border);
-            padding: 15px;
-            border-radius: 12px;
-            margin-bottom: 15px;
+        /* --- SOCIAL LINKS --- */
+        .socials-container {
             display: flex;
-            align-items: center;
             gap: 15px;
-        }
-
-        .interest-icon {
-            font-size: 1.5rem;
-            background: rgba(255, 255, 255, 0.05);
-            width: 45px; height: 45px;
-            display: flex; justify-content: center; align-items: center;
-            border-radius: 10px;
-        }
-
-        /* --- EDUCATION --- */
-        .edu-flex {
-            display: flex;
-            align-items: center;
-            gap: 25px;
-            background: rgba(0, 0, 0, 0.2);
-            padding: 25px;
-            border-radius: 16px;
-            border: 1px solid var(--card-border);
-        }
-
-        .edu-logo {
-            width: 80px; height: 80px;
-            background: #ffffff;
-            border-radius: 16px;
-            display: flex; justify-content: center; align-items: center;
-            flex-shrink: 0;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-        }
-
-        /* Animated COMSATS SVG */
-        .comsats-svg {
-            width: 55px; height: 55px;
-            fill: none; stroke: #000; stroke-width: 3;
-            stroke-linecap: round;
-            stroke-dasharray: 200;
-            animation: drawSvg 3s ease-out forwards infinite alternate;
-        }
-
-        @keyframes drawSvg {
-            0% { stroke-dashoffset: 200; }
-            100% { stroke-dashoffset: 0; }
-        }
-
-        /* --- TECH STACK --- */
-        .tech-grid {
-            display: flex;
             flex-wrap: wrap;
-            gap: 12px;
-        }
-
-        .tech-badge {
-            background: #0d111a;
-            border: 1px solid var(--card-border);
-            color: var(--text-muted);
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-family: 'Fira Code', monospace;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-        }
-
-        .tech-badge:hover {
-            color: #fff;
-            border-color: var(--accent-blue);
-            background: rgba(0, 242, 254, 0.1);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 242, 254, 0.2);
-        }
-
-        /* --- SOCIALS --- */
-        .social-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 15px;
         }
 
         .social-btn {
             display: flex;
             align-items: center;
-            gap: 12px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--card-border);
-            padding: 16px;
-            border-radius: 12px;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 6px;
+            color: #fff;
             text-decoration: none;
-            color: var(--text-main);
-            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: transform 0.2s, filter 0.2s;
         }
 
         .social-btn:hover {
-            background: rgba(0, 242, 254, 0.08);
-            border-color: var(--accent-blue);
-            transform: translateY(-3px);
+            transform: scale(1.05);
+            filter: brightness(1.2);
         }
 
-        /* --- MOBILE RESPONSIVENESS --- */
+        .btn-insta { background: #E1306C; }
+        .btn-linkedin { background: #0077b5; }
+        .btn-email { background: #D44638; }
+
+        /* --- EDUCATION & COMSATS LOGO --- */
+        .edu-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 25px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            transition: transform 0.3s;
+        }
+
+        .edu-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent-blue);
+        }
+
+        /* The Custom COMSATS Animated Logo */
+        .comsats-logo-box {
+            width: 90px;
+            height: 90px;
+            background-color: #000000; /* Black background as requested */
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+        }
+
+        .comsats-svg {
+            width: 70px;
+            height: 70px;
+        }
+
+        .comsats-lines {
+            fill: none;
+            stroke: #ffffff; /* White front/lines */
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-dasharray: 200;
+            stroke-dashoffset: 200;
+            animation: drawGlobe 3s ease-in-out forwards infinite alternate;
+        }
+
+        @keyframes drawGlobe {
+            0% { stroke-dashoffset: 200; }
+            100% { stroke-dashoffset: 0; }
+        }
+
+        .edu-info h3 { color: var(--text-heading); margin-bottom: 5px; }
+        .edu-info p { font-size: 0.95rem; color: var(--text-main); }
+
+        /* --- TECH STACK BADGES --- */
+        .tech-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tech-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            color: #fff;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 4px;
+            transition: transform 0.2s ease;
+        }
+
+        .tech-badge:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+        }
+
+        /* Specific Brand Colors from your screenshot */
+        .tech-c { background-color: #00599c; }
+        .tech-cpp { background-color: #00599c; }
+        .tech-dart { background-color: #0175c2; }
+        .tech-html { background-color: #e34f26; }
+        .tech-python { background-color: #3776ab; }
+        .tech-css { background-color: #1572b6; }
+        .tech-flutter { background-color: #02569b; }
+        .tech-wp { background-color: #21759b; }
+
+        /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
-            .hero-layout { flex-direction: column; text-align: center; gap: 25px; }
-            .about-grid { grid-template-columns: 1fr; }
-            .edu-flex { flex-direction: column; text-align: center; }
-            h1 { font-size: 2.2rem; }
-            .card { padding: 30px 20px; }
+            .profile-header { flex-direction: column; text-align: center; }
+            .edu-card { flex-direction: column; text-align: center; }
+            .socials-container { justify-content: center; }
+            .tech-container { justify-content: center; }
         }
     </style>
 </head>
 <body>
 
-    <div class="portfolio-wrapper">
+    <div class="container">
         
-        <div class="card hero-layout">
-            <div class="avatar-wrapper">
-                <div class="avatar-ring"></div>
-                <img src="https://avatars.githubusercontent.com/u/271928499?v=4" alt="Talha Asif" class="avatar-img">
-            </div>
-            <div>
-                <div class="location-tag">📍 Lahore, Pakistan</div>
-                <h1>Talha Asif</h1>
-                <div class="subtitle">> Software Engineer_</div>
-                <p style="color: var(--text-muted); max-width: 500px;">
-                    Crafting seamless digital experiences with clean code and modern technologies. Passionate about building robust, high-performance applications.
-                </p>
-            </div>
-        </div>
-
-        <div class="card">
-            <h2 class="section-title"><span>01.</span> About_Me</h2>
-            <div class="about-grid">
-                <div class="about-text">
-                    <p>
-                        Hi, I'm Talha. My core focus lies in <strong>cross-platform app development</strong>. I love the challenge of building applications that run flawlessly on both Android and iOS devices from a single codebase.
-                        <br><br>
-                        Beyond writing logic and pushing commits, I have a deep creative side. I believe that understanding aesthetics directly translates into building better, more intuitive user interfaces.
+        <div class="fade-in delay-1">
+            <div class="profile-header">
+                <div class="avatar-container">
+                    <img src="https://avatars.githubusercontent.com/u/271928499?v=4" alt="Talha Asif" class="avatar">
+                </div>
+                <div>
+                    <h2>💫 About Me:</h2>
+                    <p class="about-text">
+                        🎶 Hi, I'm Talha Asif. I'm a Bachelor of Software Engineering (BSSE) student at COMSATS Lahore. <br><br>
+                        Currently, I'm learning and building projects in 📱 cross-platform app and web development. I enjoy improving my coding skills, exploring new technologies, and creating clean, user-friendly applications 😍. <br><br>
+                        📍 Based in Lahore, Pakistan. When I'm not coding, you can find me ✏️ sketching and creating art.
                     </p>
                 </div>
-                <div>
-                    <div class="interest-box">
-                        <div class="interest-icon">📱</div>
-                        <div>
-                            <div style="font-weight: 600;">Cross-Platform Dev</div>
-                            <div style="font-size: 0.85rem; color: var(--text-muted);">Flutter & Dart</div>
-                        </div>
-                    </div>
-                    <div class="interest-box">
-                        <div class="interest-icon">🎨</div>
-                        <div>
-                            <div style="font-weight: 600;">Sketching & Art</div>
-                            <div style="font-size: 0.85rem; color: var(--text-muted);">Pencil & Digital UI</div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
 
-        <div class="card">
-            <h2 class="section-title"><span>02.</span> Education</h2>
-            <div class="edu-flex">
-                <div class="edu-logo">
+        <div class="fade-in delay-2">
+            <h2>🌐 Socials:</h2>
+            <div class="socials-container">
+                <a href="https://instagram.com/notur_heichou" target="_blank" class="social-btn btn-insta">
+                    📷 Instagram
+                </a>
+                <a href="https://linkedin.com/in/talha-asif-439651321" target="_blank" class="social-btn btn-linkedin">
+                    💼 LinkedIn
+                </a>
+                <a href="mailto:talhaasif.dev@gmail.com" class="social-btn btn-email">
+                    ✉️ Email
+                </a>
+            </div>
+        </div>
+
+        <div class="fade-in delay-3">
+            <h2>🎓 Education:</h2>
+            <div class="edu-card">
+                <div class="comsats-logo-box">
                     <svg viewBox="0 0 100 100" class="comsats-svg" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M 50 20 A 30 30 0 1 1 20 50" />
-                        <path d="M 70 30 Q 30 20 30 50 Q 30 80 70 70" />
-                        <circle cx="55" cy="50" r="8" fill="#000" stroke="none"/>
+                        <g class="comsats-lines">
+                            <line x1="50" y1="15" x2="50" y2="85" />
+                            <ellipse cx="50" cy="50" rx="15" ry="35" />
+                            <ellipse cx="50" cy="50" rx="30" ry="35" />
+                        </g>
+                        <circle cx="50" cy="50" r="40" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.5"/>
                     </svg>
                 </div>
-                <div>
-                    <h3 style="color: var(--text-main); margin-bottom: 5px;">Bachelor of Software Engineering (BSSE)</h3>
-                    <p style="color: var(--accent-blue); font-weight: 600; font-family: 'Fira Code', monospace; font-size: 0.95rem;">COMSATS University <span style="color: var(--text-muted); font-weight: 400; font-family: 'Poppins', sans-serif;">• Lahore Campus</span></p>
-                    <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 10px;">Building foundational knowledge in software architecture, advanced algorithms, and scalable development frameworks.</p>
+                <div class="edu-info">
+                    <h3>COMSATS University Islamabad</h3>
+                    <p style="color: var(--accent-blue); font-weight: 600; margin-bottom: 5px;">Lahore Campus</p>
+                    <p>Bachelor of Software Engineering (BSSE)</p>
                 </div>
             </div>
         </div>
 
-        <div class="card">
-            <h2 class="section-title"><span>03.</span> Tech_Stack</h2>
-            <div class="tech-grid">
-                <div class="tech-badge">C</div>
-                <div class="tech-badge">C++</div>
-                <div class="tech-badge">Dart</div>
-                <div class="tech-badge" style="border-color: var(--accent-blue); color: #fff;">Flutter</div>
-                <div class="tech-badge">Python</div>
-                <div class="tech-badge">HTML5</div>
-                <div class="tech-badge">CSS3</div>
-                <div class="tech-badge">WordPress</div>
+        <div class="fade-in delay-4">
+            <h2>💻 Tech Stack:</h2>
+            <div class="tech-container">
+                <div class="tech-badge tech-c">C</div>
+                <div class="tech-badge tech-cpp">C++</div>
+                <div class="tech-badge tech-dart">DART</div>
+                <div class="tech-badge tech-html">HTML5</div>
+                <div class="tech-badge tech-python">PYTHON</div>
+                <div class="tech-badge tech-css">CSS3</div>
+                <div class="tech-badge tech-flutter">FLUTTER</div>
+                <div class="tech-badge tech-wp">WORDPRESS</div>
             </div>
-        </div>
-
-        <div class="card">
-            <h2 class="section-title"><span>04.</span> Connect()</h2>
-            <div class="social-grid">
-                <a href="https://instagram.com/notur_heichou" target="_blank" class="social-btn">
-                    <span style="font-size: 1.2rem;">📸</span> Instagram
-                </a>
-                <a href="https://linkedin.com/in/talha-asif-439651321" target="_blank" class="social-btn">
-                    <span style="font-size: 1.2rem;">💼</span> LinkedIn
-                </a>
-                <a href="mailto:talhaasif.dev@gmail.com" class="social-btn">
-                    <span style="font-size: 1.2rem;">📧</span> Email Me
-                </a>
-            </div>
-        </div>
-
-        <div style="text-align: center; color: var(--text-muted); font-family: 'Fira Code', monospace; font-size: 0.85rem; padding-bottom: 20px;">
-            <p>Designed and Built by Talha Asif</p>
         </div>
 
     </div>
